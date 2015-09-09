@@ -250,6 +250,9 @@ public class XMLStreamReaderUltra implements XMLStreamReader {
 		xmlStreamReader.next();
 		String position = currentPosition();
 		String text = getText();
+		if (xmlStreamReader.isCharacters()) {
+			xmlStreamReader.next(); //should skip to the endelement
+		}
 		processEndElement(elementName);
 		return new TextElementResult(text, position);
 	}
